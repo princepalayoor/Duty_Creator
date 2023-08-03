@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-fluid mx-auto w-50 p-5 m-3">
+  <h2 class="text-center text-success"> 
+    {% if messagedata != '0' %}
+      {{ messagedata }}
+    {% endif %}
+  </h2>
+  <form class="border rounded p-5 m-3" method="post" action="">
+    {% csrf_token %}
+    <h2 class="text-center">CREATE STAFF</h2>
+      <div class="form-group">
+        <label for="exampleFormControlInput1">Staff Name </label>
+        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Enter Staff Name" name="sname">
+      </div>
+      <br>
+      <div class="form-group">
+        <label for="exampleFormControlSelect1">Staff Type</label>
+        <select class="form-control" id="exampleFormControlSelect1" name="stype">
+          {% for type in type.typename %}
+          <option>{{ type.stafftype_name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <br>
+      <div class="form-group">
+        <label for="exampleFormControlSelect1">Staff Level</label>
+        <select class="form-control" id="exampleFormControlSelect1" name="slevel">
+          {% for level in level.levelname %}
+          <option>{{ level.stafflevel_name }}</option>
+          {% endfor %}
+        </select>
+    </div>
+    <br>
+    <div class="mb-3 form-check">
+      <input type="checkbox" class="form-check-input" id="exampleCheck1" name="sstatus">
+      <label class="form-check-label" for="exampleCheck1">Active</label>
+    </div>
+    <br>
+    <button type="submit" class="btn btn-primary text-center">Submit</button>
+
+  </form>
+  </div>
+  
+{% endblock content %}

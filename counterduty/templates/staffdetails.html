@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-fluid mx-auto w-50 p-5 m-3">
+  <h2 class="text-center text-success"> 
+    {% if messagedata != '0' %}
+      {{ messagedata }}
+    {% endif %}
+  </h2>
+  <form class="border rounded p-5 m-3" method="post" action="">
+    {% csrf_token %}
+    <h2 class="text-center">EDIT STAFF</h2>
+
+      <div class="form-group">
+        <label for="exampleFormControlInput1">Staff Name </label>
+        <input type="text" class="form-control" id="exampleFormControlInput1" name="sname" value="{{staffdetails.staffname.staff_name}}">
+      </div>
+      <br>
+      <div class="form-group">
+        <label for="exampleFormControlSelect1">Staff Type</label>
+        <select class="form-control" id="exampleFormControlSelect1" name="stype">
+          <option>{{ staffdetails.staffname.staff_type }}</option>
+          {% for type in type.typename %}
+            {% if staffdetails.staffname.staff_type.id != type.id %}
+              <option>{{ type.stafftype_name }}</option>
+            {% endif %}
+          {% endfor %}
+        </select>
+      </div>
+      <br>
+      <div class="form-group">
+        <label for="exampleFormControlSelect1">Staff Level</label>
+        <select class="form-control" id="exampleFormControlSelect1" name="slevel">
+          <option>{{ staffdetails.staffname.staff_level }}</option>
+          {% for level in level.levelname %}
+            {% if staffdetails.staffname.staff_level.id != level.id %}
+              <option>{{ level.stafflevel_name }}</option>
+            {% endif %}
+          {% endfor %}
+        </select>
+    </div>
+    <br>
+    <div class="mb-3 form-check">
+    {% if staffdetails.staffname.staff_active %}
+      <input type="checkbox" class="form-check-input" id="exampleCheck1" name="sstatus" checked>
+    {% else %}
+      <input type="checkbox" class="form-check-input" id="exampleCheck1" name="sstatus" >
+    {% endif %}
+      <label class="form-check-label" for="exampleCheck1">Active</label>
+    </div>
+    <br>
+    <button type="submit" class="btn btn-primary text-center">Update</button>
+    <a href="/stafflist">
+    <button type="button" class="btn btn-secondary text-center">Cancel</button>
+    </a>
+
+  </form>
+  </div>
+  
+{% endblock content %}

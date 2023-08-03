@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="mb-2 mt-3">
+<button type="button" class="btn btn-primary position-relative">
+  Counter Staff
+  <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+    {{ counter.countercount }}
+    <span class="visually-hidden">staff count</span>
+  </span>
+</button>
+</div>
+  <div class="btn-group" role="group" aria-label="Basic example">
+    {% for counter in counter.staffname %}
+        <a href="{{ counter.id }}">
+        {% if counter.staff_active == 1 %} 
+          <button type="button" class="btn btn-success">{{counter.staff_name}}</button>
+        {% else %}
+          <button type="button" class="btn btn-secondary">{{counter.staff_name}}</button>
+        {% endif %}
+        </a>
+        <button type="button" class="border-0"></button>
+    {% endfor %}
+  </div>
+<hr>
+<div class="mb-2 mt-3">
+  <button type="button" class="btn btn-primary position-relative">
+    Department Staff
+    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+      {{ department.departmentcount }}
+      <span class="visually-hidden">staff count</span>
+    </span>
+  </button>
+  </div>
+  <div class="btn-group" role="group" aria-label="Basic example">
+    {% for department in department.staffname %}
+        <a href="{{ department.id }}">
+        {% if department.staff_active == 1 %} 
+          <button type="button" class="btn btn-success">{{department.staff_name}}</button>
+        {% else %}
+          <button type="button" class="btn btn-secondary">{{department.staff_name}}</button>
+        {% endif %}
+        </a>
+        <button type="button" class="border-0"></button>
+    {% endfor %}
+  </div>
+<hr>
+<div class="mb-2 mt-3">
+  <button type="button" class="btn btn-primary position-relative">
+    Office Staff
+    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+      {{ office.officecount }}
+      <span class="visually-hidden">staff count</span>
+    </span>
+  </button>
+  </div>
+  <div class="btn-group" role="group" aria-label="Basic example">
+    {% for office in office.staffname %}
+        <a href="{{ office.id }}">
+        {% if office.staff_active == 1 %} 
+          <button type="button" class="btn btn-success">{{office.staff_name}}</button>
+        {% else %}
+          <button type="button" class="btn btn-secondary">{{office.staff_name}}</button>
+        {% endif %}
+        </a>
+        <button type="button" class="border-0"></button>
+    {% endfor %}
+  </div>
+  
+{% endblock content %}
